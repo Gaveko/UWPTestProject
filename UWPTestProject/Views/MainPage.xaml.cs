@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using UWPTestProject.ViewModels;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
@@ -25,6 +26,7 @@ namespace UWPTestProject
         public MainPage()
         {
             this.InitializeComponent();
+            this.DataContext = new CurrencyViewModel();
         }
     }
 }
