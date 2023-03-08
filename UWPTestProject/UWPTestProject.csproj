@@ -119,8 +119,8 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="LoadCommand.cs" />
     <Compile Include="Models\Currency.cs" />
-    <Compile Include="Services\ApiService.cs" />
     <Compile Include="ViewModels\CurrencyViewModel.cs" />
     <Compile Include="Views\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
