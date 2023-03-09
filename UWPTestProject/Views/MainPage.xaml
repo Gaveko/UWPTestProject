@@ -8,8 +8,33 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <Grid Margin="10">
+    <StackPanel Margin="10">
+        <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
+            <Button>
+                <SymbolIcon Symbol="OutlineStar"/>
+            </Button>
+            <Button>
+                <SymbolIcon Symbol="Globe"/>
+            </Button>
+        </StackPanel>
+        
         <ListView ItemsSource="{Binding Currencies}">
+            <ListView.Header>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="100" />
+                        <ColumnDefinition Width="100" />
+                        <ColumnDefinition Width="100" />
+                        <ColumnDefinition Width="100" />
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Text="Rank" Grid.Column="0"/>
+                    <TextBlock Text="Name" Grid.Column="1"/>
+                    <TextBlock Text="Symbol" Grid.Column="2"/>
+                    <TextBlock Text="PriceUsd" Grid.Column="3"/>
+                </Grid>
+            </ListView.Header>
+
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <Grid>
@@ -28,5 +53,5 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-    </Grid>
+    </StackPanel>
 </Page>
