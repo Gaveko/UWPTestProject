@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace UWPTestProject.Models
 {
-    internal class Currency
+    public class Currency
     {
         [JsonPropertyName("id")]
         public string ID { get; set; }

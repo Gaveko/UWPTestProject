@@ -10,6 +10,7 @@
 
     <StackPanel Margin="10">
         <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
+            <TextBox x:Name="searchBox" PlaceholderText="Enter currency name"></TextBox>
             <Button>
                 <SymbolIcon Symbol="OutlineStar"/>
             </Button>
@@ -17,8 +18,8 @@
                 <SymbolIcon Symbol="Globe"/>
             </Button>
         </StackPanel>
-        
-        <ListView ItemsSource="{Binding Currencies}">
+
+        <ListView x:Name="myListView" ItemsSource="{Binding Currencies}">
             <ListView.Header>
                 <Grid>
                     <Grid.ColumnDefinitions>
@@ -37,19 +38,21 @@
 
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="100" />
-                            <ColumnDefinition Width="100" />
-                            <ColumnDefinition Width="100" />
-                            <ColumnDefinition Width="100" />
-                        </Grid.ColumnDefinitions>
+                    <Button Command="{Binding DataContext.ShowDetailsCommand, ElementName=myListView}">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="100" />
+                                <ColumnDefinition Width="100" />
+                                <ColumnDefinition Width="100" />
+                                <ColumnDefinition Width="100" />
+                            </Grid.ColumnDefinitions>
 
-                        <TextBlock Text="{Binding Rank}" Grid.Column="0"/>
-                        <TextBlock Text="{Binding Name}" Grid.Column="1"/>
-                        <TextBlock Text="{Binding Symbol}" Grid.Column="2"/>
-                        <TextBlock Text="{Binding PriceUsd}" Grid.Column="3"/>
-                    </Grid>
+                            <TextBlock Text="{Binding Rank}" Grid.Column="0"/>
+                            <TextBlock Text="{Binding Name}" Grid.Column="1"/>
+                            <TextBlock Text="{Binding Symbol}" Grid.Column="2"/>
+                            <TextBlock Text="{Binding PriceUsd}" Grid.Column="3"/>
+                        </Grid>
+                    </Button>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
