@@ -11,6 +11,10 @@
     <StackPanel>
         <TextBlock Text="Currency Detail Page"/>
         <TextBlock Text="{Binding Currency.Rank}"/>
-        <TextBlock Text="{Binding Currency.Name}"/>
+        <TextBlock Text="{Binding Currency.Name}" FontSize="44"/>
+
+        <ListView>
+            
+        </ListView>
     </StackPanel>
 </Page>

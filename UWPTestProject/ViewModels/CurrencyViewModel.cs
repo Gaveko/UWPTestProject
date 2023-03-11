@@ -24,10 +24,8 @@ namespace UWPTestProject.ViewModels
     public class CurrencyViewModel : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
-        public ICommand ShowDetailsCommand { get; }
         public CurrencyViewModel() 
         {
-            ShowDetailsCommand = new RelayCommand(GoToShowDetailsPage);
             LoadCurrencies();
         }
 
@@ -72,11 +70,12 @@ namespace UWPTestProject.ViewModels
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         }
-        
-        private void GoToShowDetailsPage()
+
+        public void CurrencyItem_Click(object sender, ItemClickEventArgs e)
         {
+            System.Diagnostics.Debug.WriteLine("Work");
             Frame rootFrame = Window.Current.Content as Frame;
-            rootFrame.Navigate(typeof(DetailsPage));
+            rootFrame.Navigate(typeof(DetailsPage), (Currency)e.ClickedItem);
         }
     }
 }

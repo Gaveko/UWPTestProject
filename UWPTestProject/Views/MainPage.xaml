@@ -8,25 +8,37 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <StackPanel Margin="10">
-        <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
-            <TextBox x:Name="searchBox" PlaceholderText="Enter currency name"></TextBox>
-            <Button>
-                <SymbolIcon Symbol="OutlineStar"/>
-            </Button>
-            <Button>
+    <StackPanel HorizontalAlignment="Center">
+        <RelativePanel Margin="0,10,0,10">
+            <TextBox x:Name="searchBox" PlaceholderText="Enter currency name"
+                     RelativePanel.AlignLeftWithPanel="True"/>
+            <ComboBox RelativePanel.RightOf="searchBox"/>
+            <ComboBox x:Name="themeSelectButton" 
+                    PlaceholderText="Select a Theme"
+                    RelativePanel.LeftOf="langSelectButton"
+                    >
+                <ComboBoxItem>
+                    <SymbolIcon Symbol="OutlineStar"/>
+                </ComboBoxItem>
+                <ComboBoxItem>
+                    <SymbolIcon Symbol="SolidStar"/>
+                </ComboBoxItem>
+            </ComboBox>
+            <Button x:Name="langSelectButton"
+                    RelativePanel.AlignRightWithPanel="True"
+                    >
                 <SymbolIcon Symbol="Globe"/>
             </Button>
-        </StackPanel>
+        </RelativePanel>
 
-        <ListView x:Name="myListView" ItemsSource="{Binding Currencies}">
+        <ListView x:Name="myListView" ItemsSource="{Binding Currencies}" ItemClick="{x:Bind ViewModel.CurrencyItem_Click}" IsItemClickEnabled="True">
             <ListView.Header>
-                <Grid>
+                <Grid Margin="0,0,0,10">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="100" />
-                        <ColumnDefinition Width="100" />
-                        <ColumnDefinition Width="100" />
-                        <ColumnDefinition Width="100" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
 
                     <TextBlock Text="Rank" Grid.Column="0"/>
@@ -38,21 +50,19 @@
 
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <Button Command="{Binding DataContext.ShowDetailsCommand, ElementName=myListView}">
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="100" />
-                                <ColumnDefinition Width="100" />
-                                <ColumnDefinition Width="100" />
-                                <ColumnDefinition Width="100" />
-                            </Grid.ColumnDefinitions>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="100" />
+                            <ColumnDefinition Width="100" />
+                            <ColumnDefinition Width="100" />
+                            <ColumnDefinition Width="100" />
+                        </Grid.ColumnDefinitions>
 
-                            <TextBlock Text="{Binding Rank}" Grid.Column="0"/>
-                            <TextBlock Text="{Binding Name}" Grid.Column="1"/>
-                            <TextBlock Text="{Binding Symbol}" Grid.Column="2"/>
-                            <TextBlock Text="{Binding PriceUsd}" Grid.Column="3"/>
-                        </Grid>
-                    </Button>
+                        <TextBlock Text="{Binding Rank}" Grid.Column="0"/>
+                        <TextBlock Text="{Binding Name}" Grid.Column="1"/>
+                        <TextBlock Text="{Binding Symbol}" Grid.Column="2"/>
+                        <TextBlock Text="{Binding PriceUsd}" Grid.Column="3"/>
+                    </Grid>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>

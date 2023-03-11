@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using UWPTestProject.Models;
 using UWPTestProject.ViewModels;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
@@ -26,7 +27,12 @@ namespace UWPTestProject.Views
         public DetailsPage()
         {
             this.InitializeComponent();
-            this.DataContext = new DetailsViewModel();
+        }
+
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            base.OnNavigatedTo(e);
+            this.DataContext = new DetailsViewModel((Currency)e.Parameter);
         }
     }
 }

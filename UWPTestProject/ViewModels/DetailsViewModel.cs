@@ -11,9 +11,9 @@ namespace UWPTestProject.ViewModels
     internal class DetailsViewModel : INotifyPropertyChanged
     {
         public Currency Currency { get; set; }
-        public DetailsViewModel() 
+        public DetailsViewModel(Currency currency) 
         {
-            Currency = new Currency() { ID = "asd", Name = "asdfa", PriceUsd = "134", Rank = "1", Symbol = "dasf"};
+            Currency = currency;
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
