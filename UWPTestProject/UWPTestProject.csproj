@@ -120,7 +120,7 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="Models\Currency.cs" />
-    <Compile Include="Models\Exchange.cs" />
+    <Compile Include="Models\CurrencyOnMarkets.cs" />
     <Compile Include="ViewModels\CurrencyViewModel.cs" />
     <Compile Include="ViewModels\DetailsViewModel.cs" />
     <Compile Include="Views\DetailsPage.xaml.cs">

@@ -13,8 +13,42 @@
         <TextBlock Text="{Binding Currency.Rank}"/>
         <TextBlock Text="{Binding Currency.Name}" FontSize="44"/>
 
-        <ListView>
-            
+        <ListView ItemsSource="{Binding CurrencyOnMarkets}">
+            <ListView.Header>
+                <Grid Margin="5,5,5,5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Text="Exchange" Grid.Column="0" HorizontalAlignment="Center"/>
+                    <TextBlock Text="Base Symbol" Grid.Column="1" HorizontalAlignment="Center"/>
+                    <TextBlock Text="Price USD" Grid.Column="2" HorizontalAlignment="Center"/>
+                </Grid>
+            </ListView.Header>
+
+            <ListView.ItemContainerStyle>
+                <Style TargetType="ListViewItem">
+                    <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                </Style>
+            </ListView.ItemContainerStyle>
+
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Grid Margin="5,5,5,5">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Text="{Binding Exchange}" Grid.Column="0" HorizontalAlignment="Center"/>
+                        <TextBlock Text="{Binding BaseSymbol}" Grid.Column="1" HorizontalAlignment="Center"/>
+                        <TextBlock Text="{Binding PriceUsd}" Grid.Column="2" HorizontalAlignment="Center"/>
+                    </Grid>
+                </DataTemplate>
+            </ListView.ItemTemplate>
         </ListView>
     </StackPanel>
 </Page>

@@ -23,7 +23,6 @@ namespace UWPTestProject.ViewModels
 {
     public class CurrencyViewModel : INotifyPropertyChanged
     {
-        public Exchange SelectedExchange { get; set; }
         private Visibility loadingVisibility = Visibility.Visible;
 
         public Visibility LoadingVisibility 
@@ -64,32 +63,7 @@ namespace UWPTestProject.ViewModels
             LoadingVisibility = Visibility.Collapsed;
             ListViewVisibility = Visibility.Visible;
         }
-        private async Task LoadExchanges()
-        {
-            HttpClient httpClient;
-            Uri requestUri;
-            httpClient = new HttpClient();
-            requestUri = new Uri("https://api.coincap.io/v2/exchanges?limit=20");
-            try
-            {
-                HttpResponseMessage httpResponse = await httpClient.GetAsync(requestUri);
-                httpResponse.EnsureSuccessStatusCode();
-                string httpResponseBody = await httpResponse.Content.ReadAsStringAsync();
 
-                JsonDocument jsonDocument = JsonDocument.Parse(httpResponseBody);
-                JsonElement jsonElement = jsonDocument.RootElement.GetProperty("data");
-
-                Exchanges = JsonSerializer.Deserialize<ObservableCollection<Exchange>>(jsonElement);
-
-
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
-
-            ContentLoadedHandle();
-        }
         private async Task LoadCurrencies()
         {
             HttpClient httpClient;
@@ -129,19 +103,7 @@ namespace UWPTestProject.ViewModels
                 OnPropertyChanged();
             }
         }
-        private ObservableCollection<Exchange> exchanges;
-        public ObservableCollection<Exchange> Exchanges
-        {
-            get
-            {
-                return exchanges;
-            }
-            set
-            {
-                exchanges = value;
-                OnPropertyChanged();
-            }
-        }
+
         protected void OnPropertyChanged([CallerMemberName] string name = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
