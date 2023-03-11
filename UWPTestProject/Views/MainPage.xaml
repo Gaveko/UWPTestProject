@@ -4,7 +4,8 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:UWPTestProject"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+    xmlns:viewmodels="using:UWPTestProject.ViewModels" d:DataContext="{d:DesignInstance Type=viewmodels:CurrencyViewModel}"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
@@ -31,7 +32,15 @@
             </Button>
         </RelativePanel>
 
-        <ListView x:Name="myListView" ItemsSource="{Binding Currencies}" ItemClick="{x:Bind ViewModel.CurrencyItem_Click}" IsItemClickEnabled="True">
+        <StackPanel Visibility="{Binding LoadingVisibility, Mode=TwoWay}">
+            <TextBlock Text="Loading..." />
+        </StackPanel>
+        
+        <ListView x:Name="myListView" 
+                  ItemsSource="{Binding Currencies}" 
+                  ItemClick="{x:Bind ViewModel.CurrencyItem_Click}" 
+                  IsItemClickEnabled="True"
+                  Visibility="{Binding ListViewVisibility, Mode=TwoWay}">
             <ListView.Header>
                 <Grid Margin="0,0,0,10">
                     <Grid.ColumnDefinitions>

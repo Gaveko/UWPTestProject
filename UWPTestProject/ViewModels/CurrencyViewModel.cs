@@ -21,14 +21,52 @@ using Windows.Web.Http;
 
 namespace UWPTestProject.ViewModels
 {
+    public delegate void ContentLoadedEventHandler(object sender, EventArgs e);
     public class CurrencyViewModel : INotifyPropertyChanged
     {
+        private Visibility loadingVisibility = Visibility.Visible;
+
+        public Visibility LoadingVisibility 
+        {
+            get
+            {
+                return loadingVisibility;
+            }
+            set
+            {
+                loadingVisibility = value;
+                OnPropertyChanged();
+            }
+        }
+        private Visibility listViewVisibility = Visibility.Collapsed;
+        public Visibility ListViewVisibility 
+        { 
+            get
+            {
+                return listViewVisibility;
+            }
+            set
+            {
+                listViewVisibility = value;
+                OnPropertyChanged();
+            }
+        }
+
         public event PropertyChangedEventHandler PropertyChanged;
+        //public event ContentLoadedEventHandler ContentLoaded;
+
         public CurrencyViewModel() 
         {
             LoadCurrencies();
+            
+            //LoadExchanges();
         }
 
+        private async Task ContentLoadedHandle()
+        {
+            LoadingVisibility = Visibility.Collapsed;
+            ListViewVisibility = Visibility.Visible;
+        }
         private async Task LoadCurrencies()
         {
             HttpClient httpClient;
@@ -52,6 +90,8 @@ namespace UWPTestProject.ViewModels
             {
                 Console.WriteLine(ex.Message);
             }
+
+            await ContentLoadedHandle();
         }
         private ObservableCollection<Currency> currencies;
         public ObservableCollection<Currency> Currencies
@@ -73,7 +113,6 @@ namespace UWPTestProject.ViewModels
 
         public void CurrencyItem_Click(object sender, ItemClickEventArgs e)
         {
-            System.Diagnostics.Debug.WriteLine("Work");
             Frame rootFrame = Window.Current.Content as Frame;
             rootFrame.Navigate(typeof(DetailsPage), (Currency)e.ClickedItem);
         }
