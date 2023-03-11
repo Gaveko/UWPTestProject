@@ -21,9 +21,9 @@ using Windows.Web.Http;
 
 namespace UWPTestProject.ViewModels
 {
-    public delegate void ContentLoadedEventHandler(object sender, EventArgs e);
     public class CurrencyViewModel : INotifyPropertyChanged
     {
+        public Exchange SelectedExchange { get; set; }
         private Visibility loadingVisibility = Visibility.Visible;
 
         public Visibility LoadingVisibility 
@@ -52,20 +52,43 @@ namespace UWPTestProject.ViewModels
             }
         }
 
-        public event PropertyChangedEventHandler PropertyChanged;
-        //public event ContentLoadedEventHandler ContentLoaded;
+        public event PropertyChangedEventHandler PropertyChanged; 
 
         public CurrencyViewModel() 
         {
             LoadCurrencies();
-            
-            //LoadExchanges();
         }
 
-        private async Task ContentLoadedHandle()
+        private void ContentLoadedHandle()
         {
             LoadingVisibility = Visibility.Collapsed;
             ListViewVisibility = Visibility.Visible;
+        }
+        private async Task LoadExchanges()
+        {
+            HttpClient httpClient;
+            Uri requestUri;
+            httpClient = new HttpClient();
+            requestUri = new Uri("https://api.coincap.io/v2/exchanges?limit=20");
+            try
+            {
+                HttpResponseMessage httpResponse = await httpClient.GetAsync(requestUri);
+                httpResponse.EnsureSuccessStatusCode();
+                string httpResponseBody = await httpResponse.Content.ReadAsStringAsync();
+
+                JsonDocument jsonDocument = JsonDocument.Parse(httpResponseBody);
+                JsonElement jsonElement = jsonDocument.RootElement.GetProperty("data");
+
+                Exchanges = JsonSerializer.Deserialize<ObservableCollection<Exchange>>(jsonElement);
+
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
+            ContentLoadedHandle();
         }
         private async Task LoadCurrencies()
         {
@@ -91,7 +114,7 @@ namespace UWPTestProject.ViewModels
                 Console.WriteLine(ex.Message);
             }
 
-            await ContentLoadedHandle();
+            ContentLoadedHandle();
         }
         private ObservableCollection<Currency> currencies;
         public ObservableCollection<Currency> Currencies
@@ -103,6 +126,19 @@ namespace UWPTestProject.ViewModels
             set
             {
                 currencies = value;
+                OnPropertyChanged();
+            }
+        }
+        private ObservableCollection<Exchange> exchanges;
+        public ObservableCollection<Exchange> Exchanges
+        {
+            get
+            {
+                return exchanges;
+            }
+            set
+            {
+                exchanges = value;
                 OnPropertyChanged();
             }
         }
