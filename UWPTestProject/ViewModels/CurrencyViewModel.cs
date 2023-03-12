@@ -1,23 +1,14 @@
-﻿using CommunityToolkit.Mvvm.Input;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Diagnostics;
-using System.Linq;
 using System.Runtime.CompilerServices;
-using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
-using System.Windows.Input;
 using UWPTestProject.Models;
 using UWPTestProject.Views;
-using Windows.Services.Maps;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Input;
 using Windows.Web.Http;
-using static System.Net.WebRequestMethods;
 
 
 namespace UWPTestProject.ViewModels
