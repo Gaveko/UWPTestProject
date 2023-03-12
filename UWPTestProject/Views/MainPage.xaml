@@ -16,27 +16,12 @@
         </Grid.RowDefinitions>
 
         <RelativePanel Margin="0,10,0,10">
-            <TextBox x:Name="searchBox" PlaceholderText="Enter currency name"
+            <TextBox x:Name="searchBox"
+                     x:Uid="SearchBox"
                      RelativePanel.AlignLeftWithPanel="True"
                      Text="{Binding SearchBoxText, Mode=TwoWay}"/>
             <Button Click="{x:Bind ViewModel.CurrencySearch_Click}" RelativePanel.RightOf="searchBox">
                 <SymbolIcon Symbol="Find" />
-            </Button>
-            <ComboBox x:Name="themeSelectButton" 
-                    PlaceholderText="Select a Theme"
-                    RelativePanel.LeftOf="langSelectButton"
-                    >
-                <ComboBoxItem>
-                    <SymbolIcon Symbol="OutlineStar"/>
-                </ComboBoxItem>
-                <ComboBoxItem>
-                    <SymbolIcon Symbol="SolidStar"/>
-                </ComboBoxItem>
-            </ComboBox>
-            <Button x:Name="langSelectButton"
-                    RelativePanel.AlignRightWithPanel="True"
-                    >
-                <SymbolIcon Symbol="Globe"/>
             </Button>
         </RelativePanel>
 
@@ -59,10 +44,10 @@
                         <ColumnDefinition />
                     </Grid.ColumnDefinitions>
 
-                    <TextBlock Text="Rank" Grid.Column="0" HorizontalAlignment="Center"/>
-                    <TextBlock Text="Name" Grid.Column="1" HorizontalAlignment="Center"/>
-                    <TextBlock Text="Symbol" Grid.Column="2" HorizontalAlignment="Center"/>
-                    <TextBlock Text="PriceUsd" Grid.Column="3" HorizontalAlignment="Center"/>
+                    <TextBlock x:Uid="GridHeaderRank" Grid.Column="0" HorizontalAlignment="Center"/>
+                    <TextBlock x:Uid="GridHeaderName" Grid.Column="1" HorizontalAlignment="Center"/>
+                    <TextBlock x:Uid="GridHeaderSymbol" Grid.Column="2" HorizontalAlignment="Center"/>
+                    <TextBlock x:Uid="GridHeaderPriceUsd" Grid.Column="3" HorizontalAlignment="Center"/>
                 </Grid>
             </ListView.Header>
             
