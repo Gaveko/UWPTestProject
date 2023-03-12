@@ -16,7 +16,6 @@ namespace UWPTestProject.Views
         public DetailsPage()
         {
             this.InitializeComponent();
-            
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
@@ -24,6 +23,12 @@ namespace UWPTestProject.Views
             base.OnNavigatedTo(e);
             this.DataContext = new DetailsViewModel((Currency)e.Parameter);
             this.ViewModel = this.DataContext as DetailsViewModel;
+            DrawGraphic();
+        }
+
+        private async void DrawGraphic()
+        {
+            await ViewModel.DrawGraphic(currencyHistoryCanvas);
         }
     }
 }

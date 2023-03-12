@@ -15,7 +15,7 @@
             <RowDefinition />
         </Grid.RowDefinitions>
 
-        <RelativePanel Margin="0,10,0,10">
+        <RelativePanel HorizontalAlignment="Right" Margin="0,10,0,10">
             <TextBox x:Name="searchBox"
                      x:Uid="SearchBox"
                      RelativePanel.AlignLeftWithPanel="True"

@@ -18,7 +18,7 @@
             </Grid.RowDefinitions>
 
             <StackPanel Grid.Row="0">
-                <Button Click="{x:Bind ViewModel.NavigateBack}">Back</Button>
+                <Button HorizontalAlignment="Right" Click="{x:Bind ViewModel.NavigateBack}">Back</Button>
             </StackPanel>
 
             <Grid Grid.Row="1" HorizontalAlignment="Center" Width="500">
@@ -63,9 +63,11 @@
                 <TextBlock Grid.Column="1" Grid.Row="7" Text="{Binding Currency.ChangePercent24Hr}"/>
             </Grid>
 
-            <Canvas Grid.Row="2" Width="800" Height="500" Background="White">
+            <Canvas Margin="0,10,0,10" x:Name="currencyHistoryCanvas" Grid.Row="2" Width="800" Height="500" Background="White">
                 <Line X1="0" Y1="250" X2="800" Y2="250" Stroke="Red"></Line>
+                <Line X1="0" Y1="400" X2="800" Y2="400" Stroke="Red"></Line>
                 <Line X1="30" Y1="0" X2="30" Y2="500" Stroke="Red"></Line>
+                <Line X1="0" Y1="100" X2="800" Y2="100" Stroke="Red"></Line>
             </Canvas>
 
             <ListView Grid.Row="3" ItemsSource="{Binding CurrencyOnMarkets}">
