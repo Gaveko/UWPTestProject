@@ -4,11 +4,12 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:UWPTestProject.Views"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:viewmodels="using:UWPTestProject.ViewModels" d:DataContext="{d:DesignInstance Type=viewmodels:DetailsViewModel}"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <StackPanel>
+        <Button Click="{x:Bind ViewModel.NavigateBack}">Back</Button>
         <TextBlock Text="Currency Detail Page"/>
         <TextBlock Text="{Binding Currency.Rank}"/>
         <TextBlock Text="{Binding Currency.Name}" FontSize="44"/>

@@ -8,11 +8,13 @@ using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
 using UWPTestProject.Models;
+using Windows.UI.Xaml;
+using Windows.UI.Xaml.Controls;
 using Windows.Web.Http;
 
 namespace UWPTestProject.ViewModels
 {
-    internal class DetailsViewModel : INotifyPropertyChanged
+    public class DetailsViewModel : INotifyPropertyChanged
     {
         public Currency Currency { get; set; }
         private ObservableCollection<CurrencyOnMarkets> currencyOnMarkets;
@@ -63,6 +65,12 @@ namespace UWPTestProject.ViewModels
         protected void OnPropertyChanged([CallerMemberName] string name = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+        }
+
+        public void NavigateBack()
+        {
+            Frame rootFrame = Window.Current.Content as Frame;
+            rootFrame.GoBack();
         }
     }
 }

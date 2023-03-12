@@ -24,15 +24,18 @@ namespace UWPTestProject.Views
     /// </summary>
     public sealed partial class DetailsPage : Page
     {
+        public DetailsViewModel ViewModel { get; set; }
         public DetailsPage()
         {
             this.InitializeComponent();
+            
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
             this.DataContext = new DetailsViewModel((Currency)e.Parameter);
+            this.ViewModel = this.DataContext as DetailsViewModel;
         }
     }
 }
