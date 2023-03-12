@@ -117,6 +117,33 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="BaseSymbolTextBlock.Text" xml:space="preserve">
+    <value>Base Symbol</value>
+  </data>
+  <data name="CurrencyChangePercent24HrTextBlock.Text" xml:space="preserve">
+    <value>Change Percent 24Hr</value>
+  </data>
+  <data name="CurrencyMarketCapUsdTextBlock.Text" xml:space="preserve">
+    <value>Market Cap Usd</value>
+  </data>
+  <data name="CurrencyMaxSupplyTextBlock.Text" xml:space="preserve">
+    <value>Max Supply</value>
+  </data>
+  <data name="CurrencyRankTextBlock.Text" xml:space="preserve">
+    <value>Currency Rank</value>
+  </data>
+  <data name="CurrencySupplyTextBlock.Text" xml:space="preserve">
+    <value>Supply</value>
+  </data>
+  <data name="DetailsTextBlock.Text" xml:space="preserve">
+    <value>Details</value>
+  </data>
+  <data name="ExchangeTextBlock.Text" xml:space="preserve">
+    <value>Exchange</value>
+  </data>
+  <data name="GraphicHeaderTextBlock.Text" xml:space="preserve">
+    <value>Last 30 hours currency changes</value>
+  </data>
   <data name="GridHeaderName.Text" xml:space="preserve">
     <value>Name</value>
   </data>
@@ -129,7 +156,13 @@
   <data name="GridHeaderSymbol.Text" xml:space="preserve">
     <value>Symbol</value>
   </data>
+  <data name="NavigationBackButton.Content" xml:space="preserve">
+    <value>Back</value>
+  </data>
   <data name="SearchBox.PlaceholderText" xml:space="preserve">
     <value>Enter currency name</value>
+  </data>
+  <data name="WelcomeExchangesTextBlock.Text" xml:space="preserve">
+    <value>Where can buy</value>
   </data>
 </root>

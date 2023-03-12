@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Globalization;
 using System.Linq;
 using System.Runtime.CompilerServices;
@@ -41,10 +42,8 @@ namespace UWPTestProject.ViewModels
 
         private async void LoadCurrencyOnMarkets()
         {
-            HttpClient httpClient;
-            Uri requestUri;
-            httpClient = new HttpClient();
-            requestUri = new Uri($"https://api.coincap.io/v2/assets/{Currency.ID}/markets");
+            HttpClient httpClient = new HttpClient();
+            Uri requestUri = new Uri($"https://api.coincap.io/v2/assets/{Currency.ID}/markets");
             try
             {
                 HttpResponseMessage httpResponse = await httpClient.GetAsync(requestUri);
@@ -134,11 +133,9 @@ namespace UWPTestProject.ViewModels
 
         private async Task<List<HistoryCurrency>> LoadHistoryAssets()
         {
-            HttpClient httpClient;
-            Uri requestUri;
             List<HistoryCurrency> historyCurrency = new List<HistoryCurrency>();
-            httpClient = new HttpClient();
-            requestUri = new Uri($"https://api.coincap.io/v2/assets/{Currency.ID}/history?interval=h1");
+            HttpClient httpClient = new HttpClient();
+            Uri requestUri = new Uri($"https://api.coincap.io/v2/assets/{Currency.ID}/history?interval=h1");
             try
             {
                 HttpResponseMessage httpResponse = await httpClient.GetAsync(requestUri);

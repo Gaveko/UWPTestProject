@@ -117,6 +117,33 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="BaseSymbolTextBlock.Text" xml:space="preserve">
+    <value>Базовий символ</value>
+  </data>
+  <data name="CurrencyChangePercent24HrTextBlock.Text" xml:space="preserve">
+    <value>Процентні зміни 24год</value>
+  </data>
+  <data name="CurrencyMarketCapUsdTextBlock.Text" xml:space="preserve">
+    <value>Ринкова капіталізація USD</value>
+  </data>
+  <data name="CurrencyMaxSupplyTextBlock.Text" xml:space="preserve">
+    <value>Максимальний запас</value>
+  </data>
+  <data name="CurrencyRankTextBlock.Text" xml:space="preserve">
+    <value>Ранг валюти</value>
+  </data>
+  <data name="CurrencySupplyTextBlock.Text" xml:space="preserve">
+    <value>Запас</value>
+  </data>
+  <data name="DetailsTextBlock.Text" xml:space="preserve">
+    <value>Деталі</value>
+  </data>
+  <data name="ExchangeTextBlock.Text" xml:space="preserve">
+    <value>Біржа</value>
+  </data>
+  <data name="GraphicHeaderTextBlock.Text" xml:space="preserve">
+    <value>Зміни валюти за останні 30 годин</value>
+  </data>
   <data name="GridHeaderName.Text" xml:space="preserve">
     <value>Назва</value>
   </data>
@@ -129,7 +156,13 @@
   <data name="GridHeaderSymbol.Text" xml:space="preserve">
     <value>Символ</value>
   </data>
+  <data name="NavigationBackButton.Content" xml:space="preserve">
+    <value>Повернутися</value>
+  </data>
   <data name="SearchBox.PlaceholderText" xml:space="preserve">
     <value>Введіть назву валюти</value>
+  </data>
+  <data name="WelcomeExchangesTextBlock.Text" xml:space="preserve">
+    <value>Де можна купити</value>
   </data>
 </root>

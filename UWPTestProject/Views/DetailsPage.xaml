@@ -14,14 +14,19 @@
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
                 <RowDefinition />
             </Grid.RowDefinitions>
 
             <StackPanel Grid.Row="0">
-                <Button HorizontalAlignment="Right" Click="{x:Bind ViewModel.NavigateBack}">Back</Button>
+                <Button x:Uid="NavigationBackButton" HorizontalAlignment="Right" Click="{x:Bind ViewModel.NavigateBack}" />
             </StackPanel>
 
-            <Grid Grid.Row="1" HorizontalAlignment="Center" Width="500">
+            <TextBlock x:Uid="DetailsTextBlock" Grid.Row="1" HorizontalAlignment="Center" FontSize="30"/>
+
+            <Grid Grid.Row="2" HorizontalAlignment="Center" Width="500">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
@@ -38,39 +43,43 @@
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
 
-                <TextBlock Grid.Column="0" Text="Currency Rank"/>
+                <TextBlock x:Uid="CurrencyRankTextBlock"  Grid.Column="0"/>
                 <TextBlock Grid.Column="1" Text="{Binding Currency.Rank}"/>
 
-                <TextBlock Grid.Column="0" Grid.Row="1" Text="Name"/>
+                <TextBlock x:Uid="GridHeaderName"  Grid.Column="0" Grid.Row="1"/>
                 <TextBlock Grid.Column="1" Grid.Row="1" Text="{Binding Currency.Name}"/>
 
-                <TextBlock Grid.Column="0" Grid.Row="2" Text="Symbol"/>
+                <TextBlock x:Uid="GridHeaderSymbol" Grid.Column="0" Grid.Row="2"/>
                 <TextBlock Grid.Column="1" Grid.Row="2" Text="{Binding Currency.Symbol}"/>
 
-                <TextBlock Grid.Column="0" Grid.Row="3" Text="PriceUsd"/>
+                <TextBlock x:Uid="GridHeaderPriceUsd" Grid.Column="0" Grid.Row="3"/>
                 <TextBlock Grid.Column="1" Grid.Row="3" Text="{Binding Currency.PriceUsd}"/>
 
-                <TextBlock Grid.Column="0" Grid.Row="4" Text="Supply"/>
+                <TextBlock x:Uid="CurrencySupplyTextBlock" Grid.Column="0" Grid.Row="4"/>
                 <TextBlock Grid.Column="1" Grid.Row="4" Text="{Binding Currency.Supply}"/>
 
-                <TextBlock Grid.Column="0" Grid.Row="5" Text="Max Supply"/>
+                <TextBlock x:Uid="CurrencyMaxSupplyTextBlock"  Grid.Column="0" Grid.Row="5"/>
                 <TextBlock Grid.Column="1" Grid.Row="5" Text="{Binding Currency.MaxSupply}"/>
 
-                <TextBlock Grid.Column="0" Grid.Row="6" Text="Market Cap Usd"/>
+                <TextBlock x:Uid="CurrencyMarketCapUsdTextBlock" Grid.Column="0" Grid.Row="6"/>
                 <TextBlock Grid.Column="1" Grid.Row="6" Text="{Binding Currency.MarketCapUsd}"/>
 
-                <TextBlock Grid.Column="0" Grid.Row="7" Text="Change Percent 24Hr"/>
+                <TextBlock x:Uid="CurrencyChangePercent24HrTextBlock" Grid.Column="0" Grid.Row="7"/>
                 <TextBlock Grid.Column="1" Grid.Row="7" Text="{Binding Currency.ChangePercent24Hr}"/>
             </Grid>
 
-            <Canvas Margin="0,10,0,10" x:Name="currencyHistoryCanvas" Grid.Row="2" Width="800" Height="500" Background="White">
+            <TextBlock x:Uid="GraphicHeaderTextBlock" Grid.Row="3" HorizontalAlignment="Center" FontSize="30"/>
+
+            <Canvas Margin="0,10,0,10" x:Name="currencyHistoryCanvas" Grid.Row="4" Width="800" Height="500" Background="White">
                 <Line X1="0" Y1="250" X2="800" Y2="250" Stroke="Red"></Line>
                 <Line X1="0" Y1="400" X2="800" Y2="400" Stroke="Red"></Line>
                 <Line X1="30" Y1="0" X2="30" Y2="500" Stroke="Red"></Line>
                 <Line X1="0" Y1="100" X2="800" Y2="100" Stroke="Red"></Line>
             </Canvas>
 
-            <ListView Grid.Row="3" ItemsSource="{Binding CurrencyOnMarkets}">
+            <TextBlock x:Uid="WelcomeExchangesTextBlock" Grid.Row="5" HorizontalAlignment="Center" FontSize="30"/>
+
+            <ListView Grid.Row="6" ItemsSource="{Binding CurrencyOnMarkets}">
                 <ListView.Header>
                     <Grid Margin="5,5,5,5">
                         <Grid.ColumnDefinitions>
@@ -79,9 +88,9 @@
                             <ColumnDefinition />
                         </Grid.ColumnDefinitions>
 
-                        <TextBlock Text="Exchange" Grid.Column="0" HorizontalAlignment="Center"/>
-                        <TextBlock Text="Base Symbol" Grid.Column="1" HorizontalAlignment="Center"/>
-                        <TextBlock Text="Price USD" Grid.Column="2" HorizontalAlignment="Center"/>
+                        <TextBlock x:Uid="ExchangeTextBlock" Grid.Column="0" HorizontalAlignment="Center"/>
+                        <TextBlock x:Uid="BaseSymbolTextBlock" Grid.Column="1" HorizontalAlignment="Center"/>
+                        <TextBlock x:Uid="GridHeaderPriceUsd" Grid.Column="2" HorizontalAlignment="Center"/>
                     </Grid>
                 </ListView.Header>
 

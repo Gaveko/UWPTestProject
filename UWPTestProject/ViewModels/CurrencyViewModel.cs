@@ -91,9 +91,8 @@ namespace UWPTestProject.ViewModels
         private async Task LoadCurrencies(string currencyName = null)
         {
             LoadingDataStatus = "Loading";
-            HttpClient httpClient;
-            Uri requestUri;
-            httpClient = new HttpClient();
+
+            HttpClient httpClient = new HttpClient();
             string baseUri = "https://api.coincap.io/v2/assets";
             if (currencyName == null || currencyName == "") 
             {
@@ -103,7 +102,7 @@ namespace UWPTestProject.ViewModels
             {
                 baseUri = string.Concat(baseUri, $"/{currencyName}");
             }
-            requestUri = new Uri(baseUri);
+            Uri requestUri = new Uri(baseUri);
             try
             {
                 HttpResponseMessage httpResponse = await httpClient.GetAsync(requestUri);
