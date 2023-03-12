@@ -17,6 +17,7 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
 using Windows.Web.Http;
+using static System.Net.WebRequestMethods;
 
 
 namespace UWPTestProject.ViewModels
@@ -50,7 +51,45 @@ namespace UWPTestProject.ViewModels
                 OnPropertyChanged();
             }
         }
+        private string searchBoxText;
 
+        public string SearchBoxText
+        {
+            get
+            {
+                return searchBoxText;
+            }
+            set
+            {
+                searchBoxText = value;
+                OnPropertyChanged();
+            }
+        }
+        
+        private string loadingDataStatus = "Loading";
+
+        public string LoadingDataStatus
+        {
+            get
+            {
+                return loadingDataStatus;
+            }
+            set
+            {
+                loadingDataStatus = value;
+                if (loadingDataStatus == "Loading" || loadingDataStatus == "Failed")
+                {
+                    LoadingVisibility = Visibility.Visible;
+                    ListViewVisibility = Visibility.Collapsed;
+                }
+                else
+                {
+                    LoadingVisibility = Visibility.Collapsed;
+                    ListViewVisibility = Visibility.Visible;
+                }
+                OnPropertyChanged();
+            }
+        }
         public event PropertyChangedEventHandler PropertyChanged; 
 
         public CurrencyViewModel() 
@@ -58,18 +97,22 @@ namespace UWPTestProject.ViewModels
             LoadCurrencies();
         }
 
-        private void ContentLoadedHandle()
+        private async Task LoadCurrencies(string currencyName = null)
         {
-            LoadingVisibility = Visibility.Collapsed;
-            ListViewVisibility = Visibility.Visible;
-        }
-
-        private async Task LoadCurrencies()
-        {
+            LoadingDataStatus = "Loading";
             HttpClient httpClient;
             Uri requestUri;
             httpClient = new HttpClient();
-            requestUri = new Uri("https://api.coincap.io/v2/assets?limit=20");
+            string baseUri = "https://api.coincap.io/v2/assets";
+            if (currencyName == null || currencyName == "") 
+            {
+                baseUri = string.Concat(baseUri, "?limit=20");
+            }
+            else
+            {
+                baseUri = string.Concat(baseUri, $"/{currencyName}");
+            }
+            requestUri = new Uri(baseUri);
             try
             {
                 HttpResponseMessage httpResponse = await httpClient.GetAsync(requestUri);
@@ -79,16 +122,25 @@ namespace UWPTestProject.ViewModels
                 JsonDocument jsonDocument = JsonDocument.Parse(httpResponseBody);
                 JsonElement jsonElement = jsonDocument.RootElement.GetProperty("data");
 
-                Currencies = JsonSerializer.Deserialize<ObservableCollection<Currency>>(jsonElement);
-                
+                if (currencyName == null || currencyName == "")
+                {
+                    Currencies = JsonSerializer.Deserialize<ObservableCollection<Currency>>(jsonElement);
+                }
+                else
+                {
+                    Currencies.Clear();
+                    Currencies.Add(JsonSerializer.Deserialize<Currency>(jsonElement));
 
+                }
+
+                LoadingDataStatus = "Success";
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
+                LoadingDataStatus = "Failed";
             }
 
-            ContentLoadedHandle();
+            
         }
         private ObservableCollection<Currency> currencies;
         public ObservableCollection<Currency> Currencies
@@ -113,6 +165,11 @@ namespace UWPTestProject.ViewModels
         {
             Frame rootFrame = Window.Current.Content as Frame;
             rootFrame.Navigate(typeof(DetailsPage), (Currency)e.ClickedItem);
+        }
+
+        public void CurrencySearch_Click()
+        {
+            LoadCurrencies(SearchBoxText);
         }
     }
 }

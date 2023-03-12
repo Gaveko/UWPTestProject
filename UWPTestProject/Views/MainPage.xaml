@@ -17,7 +17,11 @@
 
         <RelativePanel Margin="0,10,0,10">
             <TextBox x:Name="searchBox" PlaceholderText="Enter currency name"
-                     RelativePanel.AlignLeftWithPanel="True"/>
+                     RelativePanel.AlignLeftWithPanel="True"
+                     Text="{Binding SearchBoxText, Mode=TwoWay}"/>
+            <Button Click="{x:Bind ViewModel.CurrencySearch_Click}" RelativePanel.RightOf="searchBox">
+                <SymbolIcon Symbol="Find" />
+            </Button>
             <ComboBox x:Name="themeSelectButton" 
                     PlaceholderText="Select a Theme"
                     RelativePanel.LeftOf="langSelectButton"
@@ -37,7 +41,7 @@
         </RelativePanel>
 
         <StackPanel Visibility="{Binding LoadingVisibility, Mode=TwoWay}" Grid.Row="1">
-            <TextBlock Text="Loading..." />
+            <TextBlock Text="{Binding LoadingDataStatus}" />
         </StackPanel>
 
         <ListView x:Name="myListView" 
