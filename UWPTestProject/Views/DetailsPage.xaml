@@ -8,13 +8,62 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <StackPanel>
-        <Button Click="{x:Bind ViewModel.NavigateBack}">Back</Button>
-        <TextBlock Text="Currency Detail Page"/>
-        <TextBlock Text="{Binding Currency.Rank}"/>
-        <TextBlock Text="{Binding Currency.Name}" FontSize="44"/>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition />
+        </Grid.RowDefinitions>
 
-        <ListView ItemsSource="{Binding CurrencyOnMarkets}">
+        <StackPanel Grid.Row="0">
+            <Button Click="{x:Bind ViewModel.NavigateBack}">Back</Button>
+        </StackPanel>
+
+        <Grid Grid.Row="1" HorizontalAlignment="Center" Width="500">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <TextBlock Grid.Column="0" Text="Currency Rank"/>
+            <TextBlock Grid.Column="1" Text="{Binding Currency.Rank}"/>
+
+            <TextBlock Grid.Column="0" Grid.Row="1" Text="Name"/>
+            <TextBlock Grid.Column="1" Grid.Row="1" Text="{Binding Currency.Name}"/>
+
+            <TextBlock Grid.Column="0" Grid.Row="2" Text="Symbol"/>
+            <TextBlock Grid.Column="1" Grid.Row="2" Text="{Binding Currency.Symbol}"/>
+
+            <TextBlock Grid.Column="0" Grid.Row="3" Text="PriceUsd"/>
+            <TextBlock Grid.Column="1" Grid.Row="3" Text="{Binding Currency.PriceUsd}"/>
+
+            <TextBlock Grid.Column="0" Grid.Row="4" Text="Supply"/>
+            <TextBlock Grid.Column="1" Grid.Row="4" Text="{Binding Currency.Supply}"/>
+
+            <TextBlock Grid.Column="0" Grid.Row="5" Text="Max Supply"/>
+            <TextBlock Grid.Column="1" Grid.Row="5" Text="{Binding Currency.MaxSupply}"/>
+
+            <TextBlock Grid.Column="0" Grid.Row="6" Text="Market Cap Usd"/>
+            <TextBlock Grid.Column="1" Grid.Row="6" Text="{Binding Currency.MarketCapUsd}"/>
+
+            <TextBlock Grid.Column="0" Grid.Row="7" Text="Change Percent 24Hr"/>
+            <TextBlock Grid.Column="1" Grid.Row="7" Text="{Binding Currency.ChangePercent24Hr}"/>
+        </Grid>
+
+                
+
+        <ListView Grid.Row="2" ItemsSource="{Binding CurrencyOnMarkets}">
             <ListView.Header>
                 <Grid Margin="5,5,5,5">
                     <Grid.ColumnDefinitions>
@@ -51,5 +100,5 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-    </StackPanel>
+    </Grid>
 </Page>

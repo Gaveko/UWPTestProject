@@ -19,5 +19,13 @@ namespace UWPTestProject.Models
         public string Name { get; set; }
         [JsonPropertyName("priceUsd")]
         public string PriceUsd { get; set; }
+        [JsonPropertyName("supply")]
+        public string Supply { get; set; }
+        [JsonPropertyName("maxSupply")]
+        public string MaxSupply { get; set; }
+        [JsonPropertyName("marketCapUsd")]
+        public string MarketCapUsd { get; set; }
+        [JsonPropertyName("changePercent24Hr")]
+        public string ChangePercent24Hr { get; set; }
     }
 }
